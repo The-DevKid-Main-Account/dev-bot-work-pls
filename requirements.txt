@@ -13,7 +13,7 @@ dnspython==2.1.0
 future==0.18.2
 google==3.0.0
 google-api-client==3.14.159265359.post1
-discord-ui @ git+https://github.com/discord-py-ui/discord-ui@f281a971593762da43e48e087fd335d33580b27a
+py-cord @ git+https://github.com/Pycord-Development/pycord@3ce83f3089dd2d88856858272344f12453613183
 google-api-core==1.31.1
 google-api-python-client==2.15.0
 google-auth==1.34.0
