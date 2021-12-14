@@ -550,7 +550,7 @@ async def phone(ctx):
 
      async def b2_callback(interaction):
           await ctx.channel.purge(limit=1)
-          await code(ctx)
+          await takeapic(ctx)
      
      for thing in users[str(user.id)]['bag']:
           amt = thing['amount']
@@ -565,7 +565,13 @@ async def phone(ctx):
                     button2.callback = b2_callback
                     await ctx.send(embed=embed, view=view)
      else:
-          await ctx.send('You dont have a laptop!')
+          await ctx.send('You dont have a phone!')
+
+@commands.cooldown(1,50,commands.BucketType.user)
+async def takeapic(ctx):
+     embed = Embed(title='**You toke a picture!**', description='this is what you look like!')
+     embed.set_image(url=ctx.author.avatar_url)
+     await ctx.send(embed=embed)
 
 @use.command()
 @commands.cooldown(1,50,commands.BucketType.user)
