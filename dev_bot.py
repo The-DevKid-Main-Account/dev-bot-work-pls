@@ -533,7 +533,7 @@ async def use(ctx):
 @commands.cooldown(1,50,commands.BucketType.user)
 async def phone(ctx):
      embed = Embed(title='**Using Phone**', description='What do you want to use ur phone for?', color=discord.Color.darker_grey())
-     embed.set_image(url='https://thumbs.dreamstime.com/t/white-phone-black-screen-mobile-smartphone-cell-dark-touchscreen-flat-vector-cartoon-illustration-objects-isolated-96487179.jpg')
+     embed.set_thumbnail(url='https://thumbs.dreamstime.com/t/white-phone-black-screen-mobile-smartphone-cell-dark-touchscreen-flat-vector-cartoon-illustration-objects-isolated-96487179.jpg')
      button1 = Button(label='Post a video', style=discord.ButtonStyle.green, emoji='<:uploadavideo:918524296538751047>')
      button2 = Button(label='Take A Picture', style=discord.ButtonStyle.green, emoji='<:images:920211347944407101>')
      buttonList  = [button1,button2]
