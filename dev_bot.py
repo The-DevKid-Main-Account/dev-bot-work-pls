@@ -535,8 +535,7 @@ async def phone(ctx):
      embed = Embed(title='**Using Phone**', description='What do you want to use ur phone for?', color=discord.Color.darker_grey())
      embed.set_thumbnail(url='https://thumbs.dreamstime.com/t/white-phone-black-screen-mobile-smartphone-cell-dark-touchscreen-flat-vector-cartoon-illustration-objects-isolated-96487179.jpg')
      button1 = Button(label='Post a video', style=discord.ButtonStyle.green, emoji='<:uploadavideo:918524296538751047>')
-     button2 = Button(label='Take A Picture', style=discord.ButtonStyle.green, emoji='<:images:920211347944407101>')
-     buttonList  = [button1,button2]
+     buttonList  = [button1]
      view = View()
      user = ctx.author
      users = await getBankData()
@@ -547,31 +546,19 @@ async def phone(ctx):
      async def b1_callback(interaction):
           await ctx.channel.purge(limit=1)
           await pv(ctx, 'https://thumbs.dreamstime.com/t/white-phone-black-screen-mobile-smartphone-cell-dark-touchscreen-flat-vector-cartoon-illustration-objects-isolated-96487179.jpg')
-
-     async def b2_callback(interaction):
-          await ctx.channel.purge(limit=1)
-          await takeapic(ctx)
-     
+          
      for thing in users[str(user.id)]['bag']:
           amt = thing['amount']
           item = {"item": "phone", "amount": amt}
           
      if item in users[str(user.id)]['bag']:
                button1.callback = b1_callback
-               button2.callback = b2_callback
                await ctx.send(embed=embed, view=view)
                if amt > 1:
                     button1.callback = b1_callback
-                    button2.callback = b2_callback
                     await ctx.send(embed=embed, view=view)
      else:
           await ctx.send('You dont have a phone!')
-
-@commands.cooldown(1,50,commands.BucketType.user)
-async def takeapic(ctx):
-     embed = Embed(title='**You toke a picture!**', description='this is what you look like!')
-     embed.set_image(url=ctx.author.avatar_url)
-     await ctx.send(embed=embed)
 
 @use.command()
 @commands.cooldown(1,50,commands.BucketType.user)
