@@ -364,50 +364,37 @@ async def rob(ctx, member: discord.Member):
 
     await openAccount(ctx.author)
     await openAccount(member)
+        
+    if bal[0]<100:
+        await ctx.send('Hey, they dont have the devcoins you would need so next time try to rob from someone else.')
+        return
+
+
 
     if gc == gcList[0]:
           await ctx.send(f'You tried to rob {member.mention} but you got caught, so you had to give him {earnings2} devcoins.')
           await updateBank(ctx.author,earnings)
           await updateBank(member,-1*earnings)
+    else:
+        if earnings == 0:
+                await ctx.send(f'You robbed {member.mention} and got NOTHING LMFAOOOOOO xD')
 
-    if bal[0]<100:
-        await ctx.send('Hey, they dont have the devcoins you would need so next time try to rob from someone else.')
-        return
+                await updateBank(ctx.author,0)
+          
+        if earnings == bal[0]:
+                await ctx.send(f'You robbed {member.mention} and basically took ALL OF HIS DEVCOINS xD')
+                await updateBank(ctx.author,earnings)
+                await updateBank(member,-1*earnings)
 
-    if earnings == 0:
-        await ctx.send(f'You robbed {member.mention} and got NOTHING LMFAOOOOOO xD')
+        if earnings == 69:
+                await ctx.send(f'You robbed {member.mention} and got 69(nice) devcoins!')
 
-        await updateBank(ctx.author,0)
-        await updateBank(member,0)
+        else:
+                await ctx.send(f'You robbed {member.mention} and got {earnings} devcoins!')
 
-    if earnings == bal[0]:
-        await ctx.send(f'You robbed {member.mention} and basically took ALL OF HIS DEVCOINS xD')
-        await updateBank(ctx.author,earnings)
-        await updateBank(member,-1*earnings)
-
-    if earnings == 69:
-        await ctx.send(f'You robbed {member.mention} and got 69(nice) devcoins!')
-    
-   
-
-    await ctx.send(f'You robbed {member.mention} and got {earnings} devcoins!')
-      
-    await updateBank(ctx.author,earnings)
-    await updateBank(member,-1*earnings)
-
-@devbot.command()
-async def shop(ctx):
-     embed = Embed(title='Shop',color=discord.Color.dark_green(), timestamp=ctx.message.created_at)
-
-     for item in Shop:
-          name = item['name']
-          price = item['price']
-          desc = item['description']
-          emoji = item['emoji']
-          embed.add_field(name=f'{emoji}{name}',value=f'{price} dc | {desc}')
-
-     await ctx.send(embed=embed)
-
+                await updateBank(ctx.author,earnings)
+                await updateBank(member,-1*earnings)
+                
 @devbot.command()
 @commands.cooldown(1,50,commands.BucketType.user)
 async def buy(ctx,*,item,amount=1):
