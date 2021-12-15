@@ -345,12 +345,12 @@ async def slots(ctx,amount=None):
           embed.add_field(name='Results:',value='You lost :(')
           await ctx.send(embed=embed)
 
-@devbot.command(aliases=['r'])
+@devbot.command(aliases=['r', 'steal'])
 @commands.cooldown(1,50,commands.BucketType.user)
 async def rob(ctx, member: discord.Member):
     global earnings, earnings2
 
-    gcList = ['You got caught!', 'You did not get caught!']
+    gcList = ['You got caught!', 'You did not get caughvt!']
     gc = random.choice(gcList)
 
     bal = await updateBank(member)
