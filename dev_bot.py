@@ -383,15 +383,38 @@ async def rob(ctx, member: discord.Member):
     else:
         if member.id == ctx.author.id:
                 await ctx.send(f"You cant rob yourself :/")
+        else:
+                await ctx.send(f'You robbed {member.mention} and got {earnings} devcoins!')
+
+                await updateBank(ctx.author,earnings)
+                await updateBank(member,-1*earnings)
+                
         if member.id == devbot.user.id:
                 await ctx.send(f"You cant rob me :/")
+        else:
+                await ctx.send(f'You robbed {member.mention} and got {earnings} devcoins!')
+
+                await updateBank(ctx.author,earnings)
+                await updateBank(member,-1*earnings)        
+        
         if earnings == 0:
                 await ctx.send(f'You robbed {member.mention} and got NOTHING LMFAOOOOOO xD')
 
                 await updateBank(ctx.author,0)
+        else:
+                await ctx.send(f'You robbed {member.mention} and got {earnings} devcoins!')
+
+                await updateBank(ctx.author,earnings)
+                await updateBank(member,-1*earnings)
           
         if earnings == bal[0]:
                 await ctx.send(f'You robbed {member.mention} and basically took ALL OF HIS DEVCOINS xD')
+                await updateBank(ctx.author,earnings)
+                await updateBank(member,-1*earnings)
+        
+        else:
+                await ctx.send(f'You robbed {member.mention} and got {earnings} devcoins!')
+
                 await updateBank(ctx.author,earnings)
                 await updateBank(member,-1*earnings)
 
