@@ -916,7 +916,7 @@ async def userinfo(ctx, member: discord.Member=None):
 
 @devbot.command()
 async def dog(ctx):
-     ran = random.randint(0, 8)
+     ran = random.randint(0, 200)
      resource = build('customsearch', 'v1', developerKey=apiKey).cse()
      result = resource.list(
           q=f"very cute dog images", cx="1cc1c003789d32ce9", searchType="image"
