@@ -191,6 +191,7 @@ async def balance(ctx,member: discord.Member = None):
              embed = Embed(title=f"**My Balance**", color=discord.Color.green(), timestamp=ctx.message.created_at)
              embed.add_field(name='devcoins', value='∞')
              embed.add_field(name='bank', value='∞')
+             await ctx.send(embed=embed)
 
      embed = Embed(title=f"**{member.name}'s balance**", color=discord.Color.green(), timestamp=ctx.message.created_at)
      embed.add_field(name='devcoins', value=devcoins_amt)
