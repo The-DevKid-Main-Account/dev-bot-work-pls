@@ -896,8 +896,10 @@ async def pic(ctx, *, search):
           await ctx.send(embed=embed1)
 
 @devbot.command()
-async def userinfo(ctx, member: discord.Member):
+async def userinfo(ctx, member: discord.Member=None):
      roles = [role for role in member.roles]
+     if member == None:
+        member = ctx.author
      
      embed = discord.Embed(color=member.color, timestamp=ctx.message.created_at)
      embed.set_author(name=f"Info About- {member}")
