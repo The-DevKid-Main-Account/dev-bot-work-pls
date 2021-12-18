@@ -900,19 +900,30 @@ async def userinfo(ctx, member: discord.Member):
      roles = [role for role in member.roles]
      
      embed = discord.Embed(color=member.color, timestamp=ctx.message.created_at)
-     embed.set_author(name=f"User Info - {member}")
+     embed.set_author(name=f"Info About- {member}")
      embed.set_thumbnail(url=member.avatar_url)
      embed.set_footer(text=f"Command requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-     embed.add_field(name='ID:', value=member.id)
-     embed.add_field(name='Server nickname:', value=member.display_name)
-     embed.add_field(name='Account Created at:', value=member.created_at.strftime('%a, %#d %B %Y, %I:%M %p UTC'))
-     embed.add_field(name='Joined the server at:', value=member.joined_at.strftime('%a, %#d %B %Y, %I:%M %p UTC'))
-     embed.add_field(name=f'Roles in this server ({len(roles)})', value=' '.join([role.mention for role in roles]))
-     embed.add_field(name='top role:', value=member.top_role.mention)
-     embed.add_field(name='is a bot?', value=member.bot)
-     
+     embed.add_field(name='User ID:', value=member.id)
+     embed.add_field(name='User Server nickname:', value=member.display_name)
+     embed.add_field(name='User Account Created at:', value=member.created_at.strftime('%a, %#d %B %Y, %I:%M %p UTC'))
+     embed.add_field(name=f'User Joined {ctx.guild.name} at:', value=member.joined_at.strftime('%a, %#d %B %Y, %I:%M %p UTC'))
+     embed.add_field(name=f'User Roles ({len(roles)} roles):', value=' '.join([role.mention for role in roles]))
+     embed.add_field(name='Top Role:', value=member.top_role.mention)
+        
      await ctx.send(embed=embed)
+
+@devbot.command()
+async def dog(ctx):
+     ran = random.randint(0, 8)
+     resource = build('customsearch', 'v1', developerKey=apiKey).cse()
+     result = resource.list(
+          q=f"very cute dog images", cx="1cc1c003789d32ce9", searchType="image"
+     ).execute()
+     url = result['items'][ran]['link']   
      
+     embed1 = discord.Embed(title=f"**Here's a Cute Dog!**",color=discord.Color.random())
+     embed1.set_image(url=url)
+     await ctx.send(embed=embed1)
      
 @devbot.command()
 async def devkidserver(ctx):
