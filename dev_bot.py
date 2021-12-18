@@ -187,7 +187,7 @@ async def balance(ctx,member: discord.Member = None):
      devcoins_amt = users[str(user.id)]['devcoins']
      bank_amt = users[str(user.id)]['bank']
         
-     if member.id == devbot.user.id:
+     if member.id in [devbot.user.id]:
              embed = Embed(title=f"**My Balance**", color=discord.Color.green(), timestamp=ctx.message.created_at)
              embed.add_field(name='devcoins', value='∞')
              embed.add_field(name='bank', value='∞')
