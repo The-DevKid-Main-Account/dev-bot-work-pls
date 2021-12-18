@@ -186,6 +186,11 @@ async def balance(ctx,member: discord.Member = None):
      
      devcoins_amt = users[str(user.id)]['devcoins']
      bank_amt = users[str(user.id)]['bank']
+        
+     if member.id == devbot.user.id:
+             embed = Embed(title=f"**My Balance**", color=discord.Color.green(), timestamp=ctx.message.created_at)
+             embed.add_field(name='devcoins', value='∞')
+             embed.add_field(name='bank', value='∞')
 
      embed = Embed(title=f"**{member.name}'s balance**", color=discord.Color.green(), timestamp=ctx.message.created_at)
      embed.add_field(name='devcoins', value=devcoins_amt)
@@ -369,13 +374,17 @@ async def rob(ctx, member: discord.Member):
         await ctx.send('Hey, they dont have the devcoins you would need so next time try to rob from someone else.')
         return
 
-
+       
 
     if gc == gcList[0]:
           await ctx.send(f'You tried to rob {member.mention} but you got caught, so you had to give him {earnings2} devcoins.')
           await updateBank(ctx.author,earnings)
           await updateBank(member,-1*earnings)
     else:
+        if member.id == ctx.author.id:
+                await ctx.send(f"You cant rob yourself :/")
+        if member.id == devbot.user.id:
+                await ctx.send(f"You cant rob me :/")
         if earnings == 0:
                 await ctx.send(f'You robbed {member.mention} and got NOTHING LMFAOOOOOO xD')
 
