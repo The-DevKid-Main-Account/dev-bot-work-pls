@@ -193,11 +193,12 @@ async def balance(ctx,member: discord.Member = None):
              embed.add_field(name='bank', value='∞')
              await ctx.send(embed=embed)
 
-     embed = Embed(title=f"**{member.name}'s balance**", color=discord.Color.green(), timestamp=ctx.message.created_at)
-     embed.add_field(name='devcoins', value=devcoins_amt)
-     embed.add_field(name='bank', value=bank_amt)
+     else:
+          embed = Embed(title=f"**{member.name}'s balance**", color=discord.Color.green(), timestamp=ctx.message.created_at)
+          embed.add_field(name='devcoins', value=devcoins_amt)
+          embed.add_field(name='bank', value=bank_amt)
 
-     await ctx.send(embed=embed)
+          await ctx.send(embed=embed)
 
 @devbot.command()
 @commands.cooldown(1,50,commands.BucketType.user)
