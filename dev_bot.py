@@ -87,13 +87,22 @@ async def on_message(msg):
           if '@here' in msg.content:
                await msg.delete()
                await msg.author.send(f'Hello, why are you trying to ping everyone in {msg.guild.name}?')
+                
      for channel in advertise_channels:
              if str(msg.channel) == channel:
                   if 'https:/' in msg.content:
                        pass
                   if 'http:/' in msg.content:
                        pass
-             elif str(msg.channel) == channel or str(msg.channel) != channel:
+             else:
+                  if 'https:/' in msg.content:
+                       await msg.delete()
+                       await msg.channel.send(f'Hey {msg.author.mention}, if you want to advertise please advertise in the advertise channel. If you cant message in the advertise channel then you dont have the youtuber role')
+                  if 'http:/' in msg.content:
+                       await msg.delete()
+                       await msg.channel.send(f'Hey {msg.author.mention}, if you want to advertise please advertise in the advertise channel. If you cant message in the advertise channel then you dont have the youtuber role')
+         
+             if str(msg.channel) == channel:
                   if 'http:/tenor' in msg.content:
                        pass
                   if 'http://tenor' in msg.content:
@@ -102,14 +111,16 @@ async def on_message(msg):
                        pass
                   if 'https:/tenor' in msg.content:
                        pass
-             else:
-                  if 'https:/' in msg.content:
-                       await msg.delete()
-                       await msg.channel.send(f'Hey {msg.author.mention}, if you want to advertise please advertise in the advertise channel. If you cant find the advertise channel then you dont have the youtuber role')
-                  if 'http:/' in msg.content:
-                       await msg.delete()
-                       await msg.channel.send(f'Hey {msg.author.mention}, if you want to advertise please advertise in the advertise channel. If you cant find the advertise channel then you dont have the youtuber role')
-              
+             elif str(msg.channel) != channel:
+                  if 'http:/tenor' in msg.content:
+                       pass
+                  if 'http://tenor' in msg.content:
+                       pass
+                  if 'https://tenor' in msg.content:
+                       pass
+                  if 'https:/tenor' in msg.content:
+                       pass
+        
      for word in badwordsList:
           if word in msg.content:
                await msg.delete()
