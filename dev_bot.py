@@ -74,6 +74,7 @@ async def on_command_error(ctx, error):
 
 @devbot.event
 async def on_message(msg):
+     advertise_channels = ['┃🎫┃advertise', '┃📢┃main-annoc', '┃📺┃yt-uploads']
      if str(msg.channel) == '┃📢┃main-annoc':
           if '@everyone' in msg.content:
                pass
@@ -86,28 +87,29 @@ async def on_message(msg):
           if '@here' in msg.content:
                await msg.delete()
                await msg.author.send(f'Hello, why are you trying to ping everyone in {msg.guild.name}?')
-
-     if str(msg.channel) == '┃🎫┃advertise':
-          if 'https:/' in msg.content:
-               pass
-          if 'http:/' in msg.content:
-               pass
-     else:
-          if 'https:/' in msg.content:
-               await msg.delete()
-               await msg.channel.send(f'Hey {msg.author.mention}, if you want to advertise please advertise in the advertise channel. If you cant find the advertise channel then you dont have the youtuber role')
-          if 'http:/' in msg.content:
-               await msg.delete()
-               await msg.channel.send(f'Hey {msg.author.mention}, if you want to advertise please advertise in the advertise channel. If you cant find the advertise channel then you dont have the youtuber role')
-          if 'http:/tenor.com' in msg.content:
-               pass
-          if 'https://tenor.com' in msg.content:
-               pass
-          if 'https://google.com' in msg.content:
-               pass
-          if 'http:/google.com' in msg.content:
-               pass
-
+     for channel in advertise_channels:
+             if str(msg.channel) == channel:
+                  if 'https:/' in msg.content:
+                       pass
+                  if 'http:/' in msg.content:
+                       pass
+             elif str(msg.channel) == channel or str(msg.channel) != channel:
+                  if 'http:/tenor' in msg.content:
+                       pass
+                  if 'http://tenor' in msg.content:
+                       pass
+                  if 'https://tenor' in msg.content:
+                       pass
+                  if 'https:/tenor' in msg.content:
+                       pass
+             else:
+                  if 'https:/' in msg.content:
+                       await msg.delete()
+                       await msg.channel.send(f'Hey {msg.author.mention}, if you want to advertise please advertise in the advertise channel. If you cant find the advertise channel then you dont have the youtuber role')
+                  if 'http:/' in msg.content:
+                       await msg.delete()
+                       await msg.channel.send(f'Hey {msg.author.mention}, if you want to advertise please advertise in the advertise channel. If you cant find the advertise channel then you dont have the youtuber role')
+              
      for word in badwordsList:
           if word in msg.content:
                await msg.delete()
