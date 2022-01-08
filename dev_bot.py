@@ -74,21 +74,22 @@ async def on_command_error(ctx, error):
 
 @devbot.event
 async def on_message(msg):
-     advertise_channels = ['┃🎫┃advertise', '┃📢┃main-annoc', '┃📺┃yt-uploads']
-     if str(msg.channel) == '┃📢┃main-annoc':
-          if '@everyone' in msg.content:
-               pass
-          if '@here' in msg.content:
-               pass
-     else:
-          if '@everyone' in msg.content:
-               await msg.delete()
-               await msg.author.send(f'Hello, why are you trying to ping everyone in {msg.guild.name}?')
-          if '@here' in msg.content:
-               await msg.delete()
-               await msg.author.send(f'Hello, why are you trying to ping everyone in {msg.guild.name}?')
+     advertise_channels = ['┃🎫┃advertise', '┃📢┃main-annoc', '┃📺┃yt-upload']
                 
      for channel in advertise_channels:
+             if str(msg.channel) == channel:
+                  if '@everyone' in msg.content:
+                       pass
+                  if '@here' in msg.content:
+                       pass
+             else:
+                  if '@everyone' in msg.content:
+                       await msg.delete()
+                       await msg.author.send(f'Hello, why are you trying to ping everyone in {msg.guild.name}?')
+                  if '@here' in msg.content:
+                       await msg.delete()
+                       await msg.author.send(f'Hello, why are you trying to ping everyone in {msg.guild.name}?')
+                      
              if str(msg.channel) == channel:
                   if 'https:/' in msg.content:
                        pass
