@@ -77,6 +77,22 @@ def wiki_summary(word):
 
 @devbot.event
 async def on_message(msg):
+    words = msg.content.split()
+    important_words = words[1:]
+
+    if msg.content.startswith('db wiki '):
+        words = msg.content.split()
+        important_words = words[1:]
+        word_ = '_'.join(important_words)
+        title = word_.replace('_', ' ')
+        await msg.channel.send('Finding a answer....')
+        embed = Embed(title=title, description=wiki_summary(word_), colour=discord.Color.blurple())
+        await msg.channel.send(content=None, embed=embed)
+
+     await devbot.process_commands(msg)
+
+@devbot.event
+async def on_message(msg):
      advertise_channels = ['┃🎫┃advertise', '┃📢┃main-annoc', '┃📺┃yt-upload']
                 
      for channel in advertise_channels:
