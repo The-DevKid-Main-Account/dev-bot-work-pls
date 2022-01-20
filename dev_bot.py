@@ -1,4 +1,4 @@
-import discord, datetime, wikipedia, random, requests, urllib.parse, urllib.request, json, os, asyncio
+import discord, datetime,random, requests, urllib.parse, urllib.request, json, os, asyncio
 from discord.ui import View
 from discord.ui import Button
 from random import randint
@@ -71,25 +71,6 @@ async def on_command_error(ctx, error):
           titles = ['**Chill out with the spam**', '**Are you in a rush?**', '**Take a break**', '**Yo slow down a bit wont ya?**', '**Give it a rest!**']
           embed = Embed(title=random.choice(titles), description='Pls wait **{:.2f}s** to use this command again.The default cooldown time is `50s` btw.'.format(error.retry_after), color=discord.Color.random())
           await ctx.send(embed=embed)
-def wiki_summary(word):
-    definition = wikipedia.summary(word, sentences=100, chars=100000, auto_suggest=False,redirect=True)
-    return definition
-
-@devbot.event
-async def on_message(msg):
-    words = msg.content.split()
-    important_words = words[1:]
-
-    if msg.content.startswith('db wiki '):
-        words = msg.content.split()
-        important_words = words[1:]
-        word_ = '_'.join(important_words)
-        title = word_.replace('_', ' ')
-        await msg.channel.send('Finding a answer....')
-        embed = Embed(title=title, description=wiki_summary(word_), colour=discord.Color.blurple())
-        await msg.channel.send(content=None, embed=embed)
-
-     await devbot.process_commands(msg)
 
 @devbot.event
 async def on_message(msg):
