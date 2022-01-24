@@ -74,43 +74,41 @@ async def on_command_error(ctx, error):
 
 @devbot.event
 async def on_message(msg):
-     advertise_channels = ['┃🎫┃advertise', '┃📢┃main-annoc', '┃📺┃yt-upload']
-                
-     for channel in advertise_channels:
-             if str(msg.channel) == channel:
-                  if '@everyone' in msg.content:
-                       pass
-                  if '@here' in msg.content:
-                       pass
-             else:
-                  if '@everyone' in msg.content:
-                       await msg.delete()
-                       await msg.author.send(f'Hello, why are you trying to ping everyone in {msg.guild.name}?')
-                  if '@here' in msg.content:
-                       await msg.delete()
-                       await msg.author.send(f'Hello, why are you trying to ping everyone in {msg.guild.name}?')
-                      
-             if str(msg.channel) == channel:
-                  if 'https:/' in msg.content:
-                       pass
-                  if 'http:/' in msg.content:
-                       pass
-                  if 'http:/tenor' in msg.content:
-                       pass
-                  if 'http://tenor' in msg.content:
-                       pass
-                  if 'https://tenor' in msg.content:
-                       pass
-                  if 'https:/tenor' in msg.content:
-                       pass
-             else:
-                  if 'https:/' in msg.content:
-                       await msg.delete()
-                       await msg.channel.send(f'Hey {msg.author.mention}, if you want to advertise please advertise in the advertise channel. If you cant message in the advertise channel then you dont have the youtuber role')
-                  if 'http:/' in msg.content:
-                       await msg.delete()
-                       await msg.channel.send(f'Hey {msg.author.mention}, if you want to advertise please advertise in the advertise channel. If you cant message in the advertise channel then you dont have the youtuber role')
-         
+              
+     if str(msg.channel) == '┃📢┃main-annoc' or str(msg.channel) == '┃📺┃yt-upload':
+          if '@everyone' in msg.content:
+               pass
+          if '@here' in msg.content:
+               pass
+     else:
+          if '@everyone' in msg.content:
+               await msg.delete()
+               await msg.author.send(f'Hello, why are you trying to ping everyone in {msg.guild.name}?')
+          if '@here' in msg.content:
+               await msg.delete()
+               await msg.author.send(f'Hello, why are you trying to ping everyone in {msg.guild.name}?')
+
+     if str(msg.channel) == '┃📺┃yt-upload' or str(msg.channel) == '┃🎫┃advertise' or str(msg.channel) == '┃📢┃main-annoc':
+          if 'https:/' in msg.content:
+               pass
+          if 'http:/' in msg.content:
+               pass
+          if 'http:/tenor' in msg.content:
+               pass
+          if 'http://tenor' in msg.content:
+               pass
+          if 'https://tenor' in msg.content:
+               pass
+          if 'https:/tenor' in msg.content:
+               pass
+     else:
+          if 'https:/' in msg.content:
+               await msg.delete()
+               await msg.channel.send(f'Hey {msg.author.mention}, if you want to advertise please advertise in the advertise channel. If you cant message in the advertise channel then you dont have the youtuber role')
+          if 'http:/' in msg.content:
+               await msg.delete()
+               await msg.channel.send(f'Hey {msg.author.mention}, if you want to advertise please advertise in the advertise channel. If you cant message in the advertise channel then you dont have the youtuber role')
+
              
      for word in badwordsList:
           if word in msg.content:
